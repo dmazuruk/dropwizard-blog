@@ -44,9 +44,10 @@ public class BlogApplication extends Application<BlogConfiguration> {
         JacksonDBCollection<Blog, String> blogs =
                 JacksonDBCollection.wrap(db.getCollection("blogs"), Blog.class, String.class);
 
-        final IndexResource indexResource = new IndexResource();
+        final IndexResource indexResource = new IndexResource(blogs);
         environment.jersey().register(indexResource);
 
         final BlogResource blogResource = new BlogResource(blogs);
+        environment.jersey().register(blogResource);
     }
 }

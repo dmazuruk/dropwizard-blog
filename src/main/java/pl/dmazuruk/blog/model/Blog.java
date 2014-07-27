@@ -1,5 +1,7 @@
 package pl.dmazuruk.blog.model;
 
+import net.vz.mongodb.jackson.Id;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
@@ -9,7 +11,10 @@ import java.util.UUID;
 /**
  * Created by dmazuruk on 7/20/14.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Blog {
+
+    @Id
     private String id = UUID.randomUUID().toString();
 
     @NotBlank
